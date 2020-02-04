@@ -13,7 +13,8 @@ class Login extends Component {
         this.state = {
             email: '',
             password: '',
-            chkRememberMe: ''
+            chkRememberMe: '',
+            errorMessage : ''
         }
     };
 
@@ -33,7 +34,18 @@ class Login extends Component {
             axios.get(`https://swapi.co/api/people/1/`, loginObject)
                 .then(res => {
                     if (res.data) {
-                        this.props.history.push('/dashboard')
+                        if(loginObject.name.toLowerCase() === "Luke Skywalker".toLowerCase() && loginObject.birth_year.toLowerCase() === "19BBY".toLowerCase())
+                        {
+                            this.props.history.push('/dashboard');
+                        }else{
+                            this.setState({
+                                errorMessage : "Please enter valid credentials"
+                            }, () => {
+                                    setTimeout(() => {
+                                        this.setState({ errorMessage : "" });
+                                    }, 3000);
+                            });
+                        }
                     }
                 })
         }
@@ -65,6 +77,9 @@ class Login extends Component {
                             <input name="chkRememberMe" onChange={this.handleChange} className="input-checkbox100" id="ckb1" type="checkbox" name="remember-me" />
                             <label className="label-checkbox100" htmlFor="chkRememberMe">Remember me</label>
                         </div>
+
+                        <label className="text-danger">{this.state.errorMessage}</label>
+                        
                         <div className="container-login100-form-btn">
                             <button type="button" className="login100-form-btn" onClick={this.verifyAuthorization}>
                                 Login
