@@ -13,7 +13,6 @@ class Login extends Component {
         this.state = {
             email: '',
             password: '',
-            chkRememberMe: '',
             errorMessage : ''
         }
     };
@@ -58,7 +57,7 @@ class Login extends Component {
                 <div className="wrap-login">
                     <form className="login-form validate-form">
                         <span className="login-form-logo">
-                            <img src="../images/login-logo.png" />
+                            {/* <img src="../images/login-logo.png" /> */}
                         </span>
                         <span className="login-form-title">
                             Log in
@@ -71,11 +70,6 @@ class Login extends Component {
                         <div className="wrap-input validate-input" data-validate="Enter password">
                             <input name="password" onChange={this.handleChange} className="input100" type="password"  placeholder="Password" />
                             <span htmlFor="password" className="focus-input100" data-placeholder="&#xf191;"></span>
-                        </div>
-
-                        <div className="contact100-form-checkbox">
-                            <input name="chkRememberMe" onChange={this.handleChange} className="input-checkbox100" id="ckb1" type="checkbox" name="remember-me" />
-                            <label className="label-checkbox100" htmlFor="chkRememberMe">Remember me</label>
                         </div>
 
                         <label className="text-danger">{this.state.errorMessage}</label>

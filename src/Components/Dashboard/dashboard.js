@@ -51,33 +51,38 @@ class Dashboard extends Component {
         return (
             <React.Fragment>
                 <body>
-                    <header>
-                        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-                            <a class="navbar-brand" href="javascript:void(0)">People Collection</a>
-                            <form class="form-inline mt-2 mt-md-0">
-                                <input onChange={this.handleChange} name="username" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" />
-                                <button onClick={this.searchUser} class="btn btn-outline-success my-2 my-sm-0" type="button">Search</button>
-                            </form>
-                            <div class="collapse navbar-collapse" id="navbarCollapse">
-                                <ul class="navbar-nav mr-auto">
-                                    <li class="nav-item active">
-                                        <a class="nav-link" href="javascript:void(0)">&nbsp;</a>
-                                    </li>
-                                </ul>
-                                <form class="form-inline mt-2 mt-md-0  pull-right">
-                                    <Link to="/" class="btn btn-outline-success my-2 my-sm-0 ml-2" type="submit">Sign Out</Link>
-                                </form>
+                    <header className="clearfix d-inline-block">
+                        <nav class="navbar navbar-expand-md navbar-light fixed-top bg-dark ">
+                            <div className="container">
+                                <a class="navbar-brand text-white" href="javascript:void(0)">Brand Name</a>
+                                
+                                <div class="collapse navbar-collapse" id="navbarCollapse">
+                                    <ul class="navbar-nav mr-auto">
+                                        <li class="nav-item active">
+                                            <a class="nav-link" href="javascript:void(0)">&nbsp;</a>
+                                        </li>
+                                    </ul>
+                                    <form class="form-inline mt-2 mt-md-0  pull-right">
+                                        <Link to="/" class="btn btn-light my-2 my-sm-0 ml-2" type="submit">Sign Out</Link>
+                                    </form>
+                                </div>
                             </div>
                         </nav>
                     </header>
 
-                    <main role="main" class="container">
-                        <br />
-                        <h1 class="mt-5">Dashboard</h1>
-                        <div className="row">
+                    <div class="container">
+                        
+                        <h2 className="mt-5">Dashboard</h2>
+                        <div className="row px-0">
+                            <div className="col-md-12 my-3 border-bottom pb-3 ">
+                                <form class="form-inline mt-2 mt-md-0">
+                                    <input onChange={this.handleChange} name="username" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" />
+                                    <button onClick={this.searchUser} class="btn btn-dark my-2 my-sm-0" type="button">Search</button>
+                                </form>
+                            </div>
                             <div className="col-md-6">
                                 {!this.state.isLoad ?
-                                    <table>
+                                    <table className="w-100">
                                         <thead>
                                             <tr>
                                                 <th> Name </th>
@@ -103,12 +108,12 @@ class Dashboard extends Component {
                             </div>
                             <div className="col-md-6">
                                 {this.state.userDetails.name !== undefined ?
-                                    <pre>{JSON.stringify(this.state.userDetails, null, 2)}</pre>
+                                    <pre className="bg-light p-3">{JSON.stringify(this.state.userDetails, null, 2)}</pre>
                                     : <div>&nbsp;</div>
                                 }
                             </div>
                         </div>
-                    </main>
+                    </div>
                 </body>
             </React.Fragment>
         )
