@@ -23,7 +23,13 @@ class Login extends Component {
 
     verifyAuthorization = () => {
         if (this.state.email.length === 0 || this.state.password.length === 0) {
-            alert("User Name and Password fields are required.");
+            this.setState({
+                errorMessage : "User Name and Password fields are required."
+            }, () => {
+                    setTimeout(() => {
+                        this.setState({ errorMessage : "" });
+                    }, 3000);
+            });
         } else {
             const loginObject = {
                 name: this.state.email,

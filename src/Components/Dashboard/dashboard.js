@@ -30,7 +30,14 @@ class Dashboard extends Component {
 
     searchUser = () => {
         if (this.state.username.length === 0) {
-            alert("Enter Username.");
+            //alert("Enter Username.");
+            this.setState({
+                errorMessage : "Please enter Username"
+            }, () => {
+                    setTimeout(() => {
+                        this.setState({ errorMessage : "" });
+                    }, 3000);
+            });
         } else {
             axios.get(`https://swapi.co/api/people/1/?name =` + this.state.username)
                 .then(res => {
@@ -74,15 +81,16 @@ class Dashboard extends Component {
                         
                         <h2 className="mt-5">Dashboard</h2>
                         <div className="row px-0">
-                            <div className="col-md-12 my-3 border-bottom pb-3 ">
+                            <div className="col-md-12 my-3 border-bottom">
                                 <form class="form-inline mt-2 mt-md-0">
                                     <input onChange={this.handleChange} name="username" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" />
                                     <button onClick={this.searchUser} class="btn btn-dark my-2 my-sm-0" type="button">Search</button>
                                 </form>
+                                <label className="text-danger">{this.state.errorMessage}</label>
                             </div>
                             <div className="col-md-6">
                                 {!this.state.isLoad ?
-                                    <table className="w-100">
+                                    <table className="w-100 table table-bordered">
                                         <thead>
                                             <tr>
                                                 <th> Name </th>
